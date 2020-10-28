@@ -2,7 +2,7 @@
  * @Author: hiyan 
  * @Date: 2020-10-27 16:35:15 
  * @Last Modified by: hiyan
- * @Last Modified time: 2020-10-27 18:06:37
+ * @Last Modified time: 2020-10-28 14:52:36
  */
 import { connect } from 'dva'
 import { Table, Popconfirm, Button, Pagination, } from 'antd'
@@ -32,8 +32,10 @@ const Users = ({ dispatch, list: dataSource, loading, total, page: current }) =>
         })
     }    
     const pageChangeHandler = (page) => {
+        console.log("******USER==page*****");
+        console.log(page);
         dispatch(routerRedux.push({
-            pathname: '/users/',
+            pathname: '/users',
             query: { page },
         }))
     }
@@ -84,7 +86,8 @@ const Users = ({ dispatch, list: dataSource, loading, total, page: current }) =>
                     total={total}
                     current={current}
                     pageSize={PAGE_SIZE}
-                    onChange={()=>pageChangeHandler}
+                    //onChange={()=>alert("Do you wanna change page",current)}
+                    onChange={(page)=>pageChangeHandler(page)}// page是click时的值
                     />
             </div>
         </div>
@@ -96,7 +99,7 @@ const mapStateToProps = (state) => {
         list,
         total,
         page,
-        loading: state.loading.models.users,
+        loading: state.loading.models.users,// dva-loading plugin auto mutate loading value
     };
     
 }

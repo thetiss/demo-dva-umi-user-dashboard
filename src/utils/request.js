@@ -39,6 +39,10 @@ export default async function request(url, options) {
   };
   if(response.headers.get('x-total-count')) {
     result.headers['x-total-count'] = response.headers.get('x-total-count');
+    console.log("**********=result=*************");
+    console.log(result);
+    console.log(result.data);
+    console.log(result.headers);
   }
   return result;
 }
