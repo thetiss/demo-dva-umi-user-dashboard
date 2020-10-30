@@ -2,7 +2,7 @@
  * @Author: hiyan 
  * @Date: 2020-10-28 14:19:31 
  * @Last Modified by: hiyan
- * @Last Modified time: 2020-10-28 17:29:01
+ * @Last Modified time: 2020-10-29 16:49:48
  */
 import * as filmService from "../services/films"
 
@@ -33,13 +33,41 @@ export default {
                 type: 'save', 
                 payload: {
                   data,
-                  total: headers['x-total-count'],
-                  page: page,
-                //   total: parseInt(headers['x-total-count']),
-                //   page: parseInt(page),      
+                //   total: headers['x-total-count'],
+                //   page: page,
+                  total: parseInt(headers['x-total-count']),
+                  page: parseInt(page),      
             }})
-
-        }
+        },
+        // *remove({ payload: id }, { call, put, select }) {
+        //     yield call(usersService.remove, id);
+        //     const page = yield select(state => state.users.page);
+        //     yield put({ type: 'fetch', payload: { page } });
+        //   },
+        *delete({ payload: { id:id }},{ call, select, put }){
+            yield call(filmService.deleteFilm, id);
+            const page  = yield select(state => state.films.page);            
+            yield put({
+                type: 'fetch',
+                payload:{ page }
+            })
+        },        
+        *edit({ payload: { id, values }},{ call, select, put }){
+            yield call(filmService.editFilm, id,values);
+            const page  = yield select(state => state.films.page);            
+            yield put({
+                type: 'fetch',
+                payload:{ page }
+            })
+        },        
+        *create({ payload: { values }},{ call, select, put }){
+            yield call(filmService.createFilm, values);
+            const page  = yield select(state => state.films.page);            
+            yield put({
+                type: 'fetch',
+                payload:{ page }
+            })
+        },
     },
     subscriptions: {
         setup({ dispatch, history }){

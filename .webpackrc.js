@@ -14,4 +14,9 @@ export default {
          "pathRewrite": { "^/save" : "" }
        }
       },
+      
+        "extraBabelPlugins": [
+          ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+        ]
+      
 }

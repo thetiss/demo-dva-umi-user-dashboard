@@ -10,6 +10,7 @@
     "dva": "^2.4.1",
     "umi": "^1.0.0",
     "umi-plugin-dva": "^0.7.1"
+
   },
   "devDependencies": {
     "eslint": "^4.14.0",

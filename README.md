@@ -1,6 +1,10 @@
 # demo-dva-umi-user-dashboard
 进一步熟悉dva，并fetch api data with umi，antD 组件常用：Table
 
+1 此例子中，由于不懂antd版本差异，导致在混乱使用antd，而报了很多错。一直怀疑是package.json，其实是antd不同版本下，语法规则不同。谨记！！！
+
+
+
 # stage 1
 
 only fetch api data ,then display in antd <Table/>
